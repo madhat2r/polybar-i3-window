@@ -7,11 +7,13 @@ This is a module inspired by the internal *polybar* `xwindow` module. This modul
 One easy way to install this is to clone this repo into your `~/.config/polybar/scripts` directory.
 
 #+begin_src shell
+# make directory
 mkdir -p ~/.config/polybar/scripts
-
-cd ~/.config/polybar/scripts
-
+# clone repo
 git clone https://github.com/madhat2r/polybar-i3-window.git ~/.config/polybar/scripts/polybar-i3-window
+
+#install python requirements
+pip install i3ipc
 #+end_src
 
 ** Config
