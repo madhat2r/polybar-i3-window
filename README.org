@@ -1,5 +1,3 @@
-#+TITLE: polybar-i3-window
-
 * polybar-i3-window
 
 This is a module inspired by the internal *polybar* `xwindow` module. This module aims to solve the issue of having a monitor specific window title, in other words, the window title it displays is specific to each monitor as configured.
