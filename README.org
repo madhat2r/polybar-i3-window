@@ -1,0 +1,73 @@
+#+TITLE: polybar-i3-window
+
+* polybar-i3-window
+
+This is a module inspired by the internal *polybar* `xwindow` module. This module aims to solve the issue of having a monitor specific window title, in other words, the window title it displays is specific to each monitor as configured.
+
+** Installation
+
+One easy way to install this is to clone this repo into your `~/.config/polybar/scripts` directory.
+
+#+begin_src shell
+mkdir -p ~/.config/polybar/scripts
+
+cd ~/.config/polybar/scripts
+
+git clone https://github.com/madhat2r/polybar-i3-window.git ~/.config/polybar/scripts/polybar-i3-window
+#+end_src
+
+** Config
+
+Add something similar to your `~/.config/polybar/config` file
+
+#+begin_src conf
+
+[bar/primary]
+
+...
+
+modules-left = i3
+modules-center = primary-i3-window
+modules-right = pulseaudio memory cpu wlan battery temperature date
+
+...
+
+[module/i3-window]
+type = custom/script
+label = %output:0:50:...%
+label-foreground = ${colors.primary}
+tail = true
+
+[module/primary-i3-window]
+inherit = module/i3-window
+exec = ~/.config/polybar/scripts/polybar-i3-window/i3-window.py HDMI-0
+
+[module/secondary-i3-window]
+inherit = module/i3-window
+exec = ~/.config/polybar/scripts/polybar-i3-window/i3-window.py DP-0
+
+#+end_src
+
+The thing to note is the you pass your monitor name `HDMI-0` to the script. You get this name by looking at you output of `xrandr --listmonitors`
+
+#+begin_src shell
+xrandr --listmonitors | cut -d" " -f6
+#+end_src
+
+: HDMI-0
+: DP-1
+: DP-0
+: DP-2
+
+** License
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but *WITHOUT ANY WARRANTY*; without even the implied warranty of
+*MERCHANTABILITY* or *FITNESS FOR A PARTICULAR PURPOSE*.  See the
+GNU General Public License for more details.
+
+You can obtain a copy of the license here: [[http://www.gnu.org/licenses/][GNU General Public License]] 
